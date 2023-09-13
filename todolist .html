@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todoliste</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        #todolist {
+            list-style-type: none;
+            padding: 0;
+        }
+        #todolist li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        #todolist li input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Todoliste</h1>
+        <form id="form" onsubmit="return false;">
+            <input type="text" id="todo" placeholder="gib deine Plan ein" required>
+            <button type="button" onclick="hinzufuegen()">Hinzufügen</button>
+        </form>
+        <ul id="todolist">
+		
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById("todo").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                hinzufuegen();
+            }
+        });
+        function hinzufuegen() {
+            var todoInput = document.getElementById("todo");
+            var todoName = todoInput.value.trim();
+
+            if (todoName !== "") {
+                var liste = document.getElementById("todolist");
+                var TodoItem = document.createElement("li");
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                var label = document.createElement("label");
+                label.textContent = todoName;
+                TodoItem.appendChild(checkbox);
+                TodoItem.appendChild(label);
+                liste.appendChild(TodoItem);
+
+                todoInput.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
+
